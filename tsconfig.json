@@ -1,18 +1,26 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "useDefineForClassFields": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
-    "skipLibCheck": true
+    "baseUrl": ".", // 解析非相对模块的基地址，默认是当前目录
+    "module": "esnext", // 生成代码的模板标准
+    "target": "esnext", // 目标语言的版本
+    "lib": ["dom", "esnext"], // TS需要引用的库，即声明文件，es5 默认引用dom、es5、scripthost,
+    "strict": true, // 开启所有严格的类型检查
+    "jsx": "preserve", // 指定 jsx 格式
+    "esModuleInterop": true, // 允许export=导出，由import from 导入
+    "skipLibCheck": true, // 是否跳过声明文件的类型检查，这可以在编译期间以牺牲类型系统准确性为代价来节省时间，默认：false
+    "moduleResolution": "node", // 指定模块解析策略，node或classic
+    "resolveJsonModule": true, // 是否解析 JSON 模块，默认：false。
+    "noUnusedLocals": true, // 是否检查未使用的局部变量，默认：false。
+    "noUnusedParameters": true, // 是否检查未使用的参数，默认：false。
+    "strictNullChecks": true, // 是否启用严格的空检查，默认：false。
+    "forceConsistentCasingInFileNames": true, // 是否区分文件系统大小写规则，默认：false。
+    "removeComments": true, // 编译后删除注释
+    "types": [ // 用来指定需要包含的模块，并将其包含在全局范围内。
+      "vite/client"
+    ],
+    "paths": { // 用于设置模块名称基于baseUrl的路径映射关系。
+      "@/*": ["src/*"]
+    }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "exclude": ["dist", "node_modules"] // 指定不需要被编译的目录。
 }
